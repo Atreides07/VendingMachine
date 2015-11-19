@@ -30,7 +30,7 @@ namespace VendingMachine.LogicLayer
             UserMoneySumm += nominal;
         }
 
-        public Product ByeProduct(Guid productId)
+        public Product BuyProduct(Guid productId)
         {
             if (products[productId].Count <= 0)
             {

@@ -77,7 +77,7 @@ namespace VendingMachine.LogicLayer.Test
             var vendingMachine = fixture.Create<VendingMachineCore>();
             
             Assert.AreEqual(250,vendingMachine.UserMoneySumm);
-            var product=vendingMachine.ByeProduct(tea.Id);
+            var product=vendingMachine.BuyProduct(tea.Id);
             
 
             Assert.AreEqual(9,vendingMachine.GetProducts().First(i=>i.Id==tea.Id).Count);

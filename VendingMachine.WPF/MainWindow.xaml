@@ -1,0 +1,88 @@
+﻿<Window x:Class="VendingMachine.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VendingMachine.WPF"
+        xmlns:converters="clr-namespace:VendingMachine.WPF.Converters"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        DataContext="{Binding Source={StaticResource Locator}, Path=MainViewModel}"
+        >
+    <Window.Resources>
+        <converters:MoneyConverter x:Key="MoneyConverter" />
+    </Window.Resources>
+    <Grid Name="RootGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+
+
+            <TextBlock Text="Пользователь"></TextBlock>
+            <ItemsControl ItemsSource="{Binding UserViewModel.Purse}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Nominal, Converter={StaticResource MoneyConverter}}" Width="100"></TextBlock>
+                            <TextBlock Text="{Binding Count}" Width="100"></TextBlock>
+                            <Button Content="Добавить в кофемашину" 
+                                    Command="{Binding ElementName=RootGrid, Path=DataContext.AddCointToVendingMachineCommand}"
+                                    CommandParameter="{Binding}"></Button>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <TextBlock Text="Купленные товары:"></TextBlock>
+            <ItemsControl ItemsSource="{Binding UserViewModel.Products}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Name}" Width="150"></TextBlock>
+                            <TextBlock Text="{Binding Price, Converter={StaticResource MoneyConverter}}" Width="100"></TextBlock>
+                            <TextBlock Text="{Binding Count}" Width="100"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <TextBlock Text="Кофемашина"></TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Внесенная сумма:"></TextBlock>
+                <TextBlock Text="{Binding VendingMachineViewModel.UserSummViewModel}"></TextBlock>
+            </StackPanel>
+
+            <TextBlock Text="Товары в кофемашине:"></TextBlock>
+            <ItemsControl ItemsSource="{Binding VendingMachineViewModel.Products}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Name}" Width="150"></TextBlock>
+                            <TextBlock Text="{Binding Price, Converter={StaticResource MoneyConverter}}" Width="100"></TextBlock>
+                            <TextBlock Text="{Binding Count}" Width="100"></TextBlock>
+                            <Button Content="Купить" 
+                                    Command="{Binding ElementName=RootGrid, Path=DataContext.BuyPrductCommand}"
+                                    CommandParameter="{Binding}"></Button>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <TextBlock Text="Монеты в кофемашине:"></TextBlock>
+            <ItemsControl ItemsSource="{Binding VendingMachineViewModel.Purse}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Nominal, Converter={StaticResource MoneyConverter}}" Width="100"></TextBlock>
+                            <TextBlock Text="{Binding Count}" Width="100"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <Button Content="Получить сдачу" Command="{Binding TakeChangeCommand}"></Button>
+        </StackPanel>
+    </Grid>
+</Window>

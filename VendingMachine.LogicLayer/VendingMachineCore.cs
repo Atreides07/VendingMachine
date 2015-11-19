@@ -54,6 +54,7 @@ namespace VendingMachine.LogicLayer
                 Purse.Dec(changeCoin);
                 toPurse.Add(changeCoin);
             }
+            UserMoneySumm = 0;
         }
 
         private IEnumerable<Coin> CalculateCoins(List<Coin> currenCoins, int userMoneySumm)

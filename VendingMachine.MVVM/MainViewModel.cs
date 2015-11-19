@@ -46,6 +46,7 @@ namespace VendingMachine.MVVM
                     OnPropertyChanged(nameof(UserViewModel));
                     OnPropertyChanged(nameof(VendingMachineViewModel));
                     OnPropertyChanged("VendingMachineViewModel.Products");
+                    userNotify.Alert("Спасибо!");
                 });
             }
         }

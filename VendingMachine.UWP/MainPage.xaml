@@ -18,9 +18,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <StackPanel>
-            
-            
-            <TextBlock Text="Пользователь"></TextBlock>
+            <TextBlock Text="Пользователь" Margin="0 20 0 0"></TextBlock>
             <ItemsControl ItemsSource="{Binding UserViewModel.Purse}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
@@ -34,7 +32,7 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-            <TextBlock Text="Купленные товары:"></TextBlock>
+            <TextBlock Text="Купленные товары:" Margin="0 20 0 0"></TextBlock>
             <ItemsControl ItemsSource="{Binding UserViewModel.Products}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
@@ -50,12 +48,12 @@
         </StackPanel>
         <StackPanel Grid.Column="1">
             <TextBlock Text="Кофемашина"></TextBlock>
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
                 <TextBlock Text="Внесенная сумма:"></TextBlock>
                 <TextBlock Text="{Binding VendingMachineViewModel.UserSummViewModel}"></TextBlock>
             </StackPanel>
             
-            <TextBlock Text="Товары в кофемашине:"></TextBlock>
+            <TextBlock Text="Товары в кофемашине:" Margin="0 20 0 0"></TextBlock>
             <ItemsControl ItemsSource="{Binding VendingMachineViewModel.Products}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
@@ -71,7 +69,7 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
 
-            <TextBlock Text="Монеты в кофемашине:"></TextBlock>
+            <TextBlock Text="Монеты в кофемашине:" Margin="0 20 0 0"></TextBlock>
             <ItemsControl ItemsSource="{Binding VendingMachineViewModel.Purse}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
